@@ -9,24 +9,20 @@ package com.example.arialesmana.jhotel_android_arialesmana;
  */
 public class Room
 {
-    // instance variables - replace the example below with your own
     private Hotel hotel;//new Hotel("Prodeo",new Lokasi(100,100,"Jakarta"),5);
-    private String nomor_kamar;
-    //private boolean isAvailable;
-    //private StatusKamar status_kamar=StatusKamar.Vacant;
-    //private Pesanan pesan;
-    protected double dailyTariff;
-
+    private String roomNumber;
+    private String statusKamar;// status_kamar=StatusKamar.Vacant;
+    private double dailyTariff;
+    private String tipeKamar;
     /**
      * Constructor for objects of class Room
      */
-    public Room(Hotel hotel,String nomor_kamar){
-        this.hotel=hotel;
-        this.nomor_kamar=nomor_kamar;
-        //this.isAvailable=isAvailable;
-        //this.pesan=pesan;
-        //this.dailyTariff=dailyTariff;
-        //this.status_kamar=StatusKamar.Vacant;;
+    public Room(String roomNumber,String statusKamar,double dailyTariff,String tipeKamar){
+        //this.hotel=hotel;
+        this.roomNumber=roomNumber;
+        this.dailyTariff=dailyTariff;
+        this.statusKamar=statusKamar;
+        this.tipeKamar = tipeKamar;
     }
 
     /**
@@ -41,7 +37,7 @@ public class Room
      * @return
      */
     public String getNomorKamar(){
-        return nomor_kamar;
+        return roomNumber;
     }
 
     /**
@@ -84,7 +80,7 @@ public class Room
      * @param nomor_kamar
      */
     public void setNomorKamar(String nomor_kamar){
-        this.nomor_kamar=nomor_kamar;
+        this.roomNumber=nomor_kamar;
     }
 
     /**
@@ -118,11 +114,11 @@ public class Room
         //String roomStatus = "Status : "+status_kamar+"\n";
         //String roomPelanggan = "Pelanggan : "+DatabasePesanan.getPesananAktif(this)+"\n";
         //String roomCust = "Pelanggan : "+pesan.getPelanggan().getNama()+"\n";
-       // if(DatabasePesanan.getPesananAktif(this)== null)
-       //     return roomHotel+roomTipe+roomHarga+roomStatus;//+roomCust;
+        // if(DatabasePesanan.getPesananAktif(this)== null)
+        //     return roomHotel+roomTipe+roomHarga+roomStatus;//+roomCust;
 
         //else
-            return roomHotel/*+roomTipe+roomHarga+roomStatus+roomPelanggan*/;
+        return roomHotel/*+roomTipe+roomHarga+roomStatus+roomPelanggan*/;
     }
     /*public void printData(){
         System.out.println("Room");
@@ -135,3 +131,4 @@ public class Room
     }*/
 
 }
+
