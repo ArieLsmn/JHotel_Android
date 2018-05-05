@@ -42,7 +42,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.child, null);
+            convertView = infalInflater.inflate(R.layout.layout_room, null);
         }
 
         TextView txtListChild = (TextView) convertView
@@ -80,7 +80,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.child, null);
+            convertView = infalInflater.inflate(R.layout.layout_room, null);
         }
 
         TextView lblListHeader = (TextView) convertView
