@@ -35,6 +35,10 @@ public class LoginActivity extends AppCompatActivity {
                         if(jsonResponse!=null) {
                             AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
                             builder.setMessage("Login Success").create().show();
+
+                            Intent menuInt = new Intent(LoginActivity.this,MainActivity.class);
+                            menuInt.putExtra("id",jsonResponse.getInt("id"));
+                            LoginActivity.this.startActivity(menuInt);
                         }
                     } catch (JSONException e) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
@@ -45,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
             LoginRequest loginRequest = new LoginRequest(email,password,responseListener);
             RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
             queue.add(loginRequest);
+
             /*if(email.equals("test@test.com") && password.equals("test")) {
                 AlertDialog.Builder builder1 = new AlertDialog.Builder(LoginActivity.this);
                 builder1.setMessage("Login success.").create().show();

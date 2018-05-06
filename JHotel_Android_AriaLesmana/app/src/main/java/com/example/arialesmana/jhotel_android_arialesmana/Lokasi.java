@@ -10,13 +10,13 @@ package com.example.arialesmana.jhotel_android_arialesmana;
  */
 public class Lokasi {
         // instance variables - replace the example below with your own
-        private float x_coord;
-        private float y_coord;
+        private double x_coord;
+        private double y_coord;
         private String deskripsi;
         /**
          * Constructor for objects of class Lokasi
          */
-    public Lokasi(float x_coord,float y_coord,String deskripsiLokasi)
+    public Lokasi(double x_coord,double y_coord,String deskripsiLokasi)
         {
             this.x_coord=x_coord;
             this.y_coord=y_coord;
@@ -27,7 +27,7 @@ public class Lokasi {
          *
          * @return  int x_coord, koordinat x lokasi
          */
-        public float getX()
+        public double getX()
         {
             return x_coord;
         }
@@ -36,7 +36,7 @@ public class Lokasi {
          *
          * @return int y_coord, koordinat y lokasi
          */
-        public float getY()
+        public double getY()
         {
             return y_coord;
         }
