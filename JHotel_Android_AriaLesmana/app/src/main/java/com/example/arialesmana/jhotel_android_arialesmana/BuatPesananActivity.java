@@ -13,11 +13,75 @@ import org.json.*;
 
 
 public class BuatPesananActivity extends AppCompatActivity {
-    private int currentUserId, banyakHari = 0, idHotel;
-    private double tariff = 0;
-    private String roomNumber = " ";
+
+    private int currentUserId,banyakHari,idHotel;
+    private double tariff;
+    private String roomNumber;
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_buat_pesanan);
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        if(b!=null){
+            currentUserId = b.getInt("id_customer");
+            idHotel = b.getInt("id_hotel");
+            tariff = b.getDouble("dailyTariff");
+            roomNumber = b.getString("nomorKamar");
+        }
+        final TextView roomNumberText = (TextView) findViewById(R.id.room_number);
+        final TextView tariffText = (TextView) findViewById(R.id.tariff);
+        final TextView totalText = (TextView) findViewById(R.id.total_biaya);
+        final EditText durasiInput = (EditText) findViewById(R.id.durasi_hari);
+        final Button pesanButton = (Button) findViewById(R.id.pesan);
+        final Button hitungButton = (Button) findViewById(R.id.hitung);
+
+        pesanButton.setVisibility(View.INVISIBLE);
+        roomNumberText.setText(roomNumber);
+        tariffText.setText(String.valueOf(tariff));
+        totalText.setText("0");
+        hitungButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                banyakHari = Integer.parseInt(durasiInput.getText().toString());
+                totalText.setText(String.valueOf(tariff*banyakHari));
+                pesanButton.setVisibility(View.VISIBLE);
+                hitungButton.setVisibility(View.INVISIBLE);
+            }
+        });
+
+        pesanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View V) {
+                final String jumlah_hari = String.valueOf(banyakHari);
+                final String id_customer = String.valueOf(currentUserId);
+                final String id_hotel = String.valueOf(idHotel);
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonResponse = new JSONObject(response);
+                            if (jsonResponse != null) {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(BuatPesananActivity.this);
+                                builder.setMessage("Pesanan Success").create().show();
+                            }
+                        } catch (JSONException e) {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(BuatPesananActivity.this);
+                            builder.setMessage("Pesanan Failed.").create().show();
+                        }
+                    }
+                };
+                BuatPesananRequest pesananRequest = new BuatPesananRequest(jumlah_hari, id_customer, id_hotel, roomNumber, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(BuatPesananActivity.this);
+                queue.add(pesananRequest);
+            }
+        });
+    }
+}
+
+/*    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buat_pesanan);
@@ -48,12 +112,12 @@ public class BuatPesananActivity extends AppCompatActivity {
         hitungButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                final int durasiHari = Integer.parseInt(durasiInput.getText().toString());
+                banyakHari = Integer.parseInt(durasiInput.getText().toString());
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        double total = durasiHari * tariff;
+                        double total = banyakHari * tariff;
                         totalText.setText(String.valueOf(total));
                         hitungButton.setVisibility(View.GONE);
                         pesanButton.setVisibility(View.VISIBLE);
@@ -64,7 +128,10 @@ public class BuatPesananActivity extends AppCompatActivity {
         pesanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
-                final int durasiHari = Integer.parseInt(durasiInput.getText().toString());
+                final String durasiHari = durasiInput.getText().toString();
+                final String id_customer = String.valueOf(currentUserId);
+                final String id_hotel = String.valueOf(idHotel);
+                final String nomorKamar = roomNumber;
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -81,10 +148,10 @@ public class BuatPesananActivity extends AppCompatActivity {
                         }
                     }
                 };
-                BuatPesananRequest pesananRequest = new BuatPesananRequest(String.valueOf(durasiHari),responseListener);
+                BuatPesananRequest pesanRequest = new BuatPesananRequest(durasiHari, id_customer, id_hotel, nomorKamar, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(BuatPesananActivity.this);
-                queue.add(pesananRequest);
+                queue.add(pesanRequest);
             }
         });
     }
-}
+}*/

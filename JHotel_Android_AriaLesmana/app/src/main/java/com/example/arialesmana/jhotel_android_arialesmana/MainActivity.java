@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             currentUserId = passBun.getInt("id_customer");
         }
 
-        expListView = (ExpandableListView) findViewById(R.id.expanded_menu);
+        expListView = (ExpandableListView) findViewById(R.id.expandHotel);
         refreshList();
 
         pesanan.setOnClickListener(new View.OnClickListener() {

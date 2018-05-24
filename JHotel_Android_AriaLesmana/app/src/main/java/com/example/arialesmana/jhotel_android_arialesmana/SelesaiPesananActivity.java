@@ -36,8 +36,8 @@ public class SelesaiPesananActivity extends AppCompatActivity {
 
         final Button batal = (Button) findViewById(R.id.batal);
         final Button selesai = (Button) findViewById(R.id.selesai);
-        final RelativeLayout tampilan = (RelativeLayout) findViewById(R.id.tampilan);
-        tampilan.setVisibility(View.INVISIBLE);
+
+
         fetchPesanan();
 
         batal.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +115,7 @@ public class SelesaiPesananActivity extends AppCompatActivity {
                         final Button batal = (Button) findViewById(R.id.batal);
                         final Button selesai = (Button) findViewById(R.id.selesai);
 
-                        final RelativeLayout tampilan = (RelativeLayout) findViewById(R.id.tampilan);
+
                         id_pesanan = jsonResponse.getInt("id");
                         biaya_akhir = jsonResponse.getInt("biaya");
                         jumlah_hari = jsonResponse.getInt("jumlahHari");
@@ -125,7 +125,7 @@ public class SelesaiPesananActivity extends AppCompatActivity {
                         biaya.setText(String.valueOf(biaya_akhir));
                         hari.setText(String.valueOf(jumlah_hari));
                         tanggal_pesan.setText(tanggal);
-                        tampilan.setVisibility(View.VISIBLE);
+
                     } else {
                         Intent gagalInt = new Intent(SelesaiPesananActivity.this, MainActivity.class);
                         gagalInt.putExtra("id_customer", currentUserId);

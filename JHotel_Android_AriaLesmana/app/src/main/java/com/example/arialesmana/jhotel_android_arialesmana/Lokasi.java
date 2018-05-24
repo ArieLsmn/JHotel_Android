@@ -76,16 +76,6 @@ public class Lokasi {
         this.deskripsi=deskripsi;
     }
 
-        /**
-         *
-         * @return String Data dari lokasi
-         */
-        public String toString(){
-        String locX = "X : "+this.x_coord+"\n";
-        String locY = "Y : "+this.y_coord+"\n";
-        String locDeskripsi = "Deskripsi : "+this.deskripsi+"\n";
 
-        return locX+locY+locDeskripsi;
-    }
 }
 

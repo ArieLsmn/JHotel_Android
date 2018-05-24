@@ -21,7 +21,11 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".BuatPesananActivity" />
-        <activity android:name=".SelesaiPesananActivity"></activity>
+        <activity android:name=".SelesaiPesananActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".RoomActivity" />
+        <activity android:name=".HotelActivity" />
+        <activity android:name=".RoomDetailActivity"></activity>
     </application>
 
 </manifest>

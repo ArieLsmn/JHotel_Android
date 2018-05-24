@@ -10,16 +10,15 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 public class MenuListAdapter extends BaseExpandableListAdapter {
+
     private Context _context;
-    private ArrayList<Hotel> listHotel; // header titles
-    // child data in format of header title, child title
+    private ArrayList<Hotel> listHotel;
     private HashMap<Hotel, ArrayList<Room>> childMapping;
 
-    public MenuListAdapter(Context context, ArrayList<Hotel> listDataHeader,
-                                 HashMap<Hotel, ArrayList<Room>> listDataChild) {
+    public MenuListAdapter(Context context, ArrayList<Hotel> listHotel, HashMap<Hotel, ArrayList<Room>> childMapping) {
         this._context = context;
-        this.listHotel = listDataHeader;
-        this.childMapping = listDataChild;
+        this.listHotel = listHotel;
+        this.childMapping=childMapping;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, final int childPosition,
                              boolean isLastChild, View convertView, ViewGroup parent) {
 
-        final String childText = (String) getChild(groupPosition, childPosition);
+        final String childText = ((Room) getChild(groupPosition, childPosition)).getNomorKamar();
 
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
@@ -46,7 +45,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
         }
 
         TextView txtListChild = (TextView) convertView
-                .findViewById(R.id.groupHeader);
+                .findViewById(R.id.child);
 
         txtListChild.setText(childText);
         return convertView;
@@ -76,7 +75,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded,
                              View convertView, ViewGroup parent) {
-        String headerTitle = (String) getGroup(groupPosition);
+        String headerTitle = ((Hotel) getGroup(groupPosition)).getNama();
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -87,6 +86,7 @@ public class MenuListAdapter extends BaseExpandableListAdapter {
                 .findViewById(R.id.groupHeader);
         lblListHeader.setTypeface(null, Typeface.BOLD);
         lblListHeader.setText(headerTitle);
+
 
         return convertView;
     }

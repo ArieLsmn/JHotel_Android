@@ -19,6 +19,7 @@ import org.json.*;
 
 
 public class RegisterActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,21 +28,19 @@ public class RegisterActivity extends AppCompatActivity {
         final EditText emailInput = (EditText) findViewById(R.id.inputEmail);
         final EditText passInput = (EditText) findViewById(R.id.inputPassword);
         final Button regButton = (Button) findViewById(R.id.regButton);
-
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View V) {
                 final String name = nameInput.getText().toString();
                 final String email = emailInput.getText().toString();
                 final String password = passInput.getText().toString();
-
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                Response.Listener<String> responseListener = new Response.Listener<String> () {
                     @Override
                     public void onResponse(String response) {
-                        try {
+                        try{
                             JSONObject jsonResponse = new JSONObject(response);
-                            if (jsonResponse != null) {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(RegisterActivity.this);
+                            if(jsonResponse!=null) {
+                                AlertDialog.Builder builder=new AlertDialog.Builder(RegisterActivity.this);
                                 builder.setMessage("Registration Success").create().show();
                             }
                         } catch (JSONException e) {
